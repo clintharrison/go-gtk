@@ -854,7 +854,7 @@ static inline GtkMessageDialog* toGMessageDialog(GtkWidget* w) { return GTK_MESS
 #if GTK_CHECK_VERSION(2,24,0)
 static inline GtkComboBoxText* toGComboBoxText(GtkWidget* w) { return GTK_COMBO_BOX_TEXT(w); }
 #else
-static inline GtkComboBoxText* toGComboBoxText(GtkWidget* w) { return w; }
+static inline GtkComboBoxText* toGComboBoxText(GtkWidget* w) { return (GtkComboBoxText *)w; }
 #endif
 static inline GtkAccessible* toGAccessible(void* w) { return GTK_ACCESSIBLE(w); }
 static inline GtkBin* toGBin(GtkWidget* w) { return GTK_BIN(w); }
