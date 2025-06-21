@@ -1,3 +1,4 @@
+//go:build !cgocheck
 // +build !cgocheck
 
 /*
