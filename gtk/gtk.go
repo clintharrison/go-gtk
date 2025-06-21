@@ -8564,8 +8564,9 @@ func (v *FontSelectionDialog) GetOkButton() *Widget {
 }
 
 func (v *FontSelectionDialog) GetFontSelection() *FontSelection {
+	panic_if_version_older_auto(2, 22, 0)
 	return &FontSelection{VBox{Box{Container{Widget{
-		C.gtk_font_selection_dialog_get_font_selection(FONT_SELECTION_DIALOG(v))}}}}}
+		C._gtk_font_selection_dialog_get_font_selection(FONT_SELECTION_DIALOG(v))}}}}}
 }
 
 //-----------------------------------------------------------------------

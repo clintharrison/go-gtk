@@ -724,6 +724,9 @@ static GdkWindow* _gtk_viewport_get_view_window(GtkViewport *viewport) {
 static GtkWindow* _gtk_button_get_event_window(GtkButton *button) {
 	return gtk_button_get_event_window(button);
 }
+static GtkFontSelection* _gtk_font_selection_dialog_get_font_selection(GtkFontSelectionDialog *dialog) {
+	return gtk_font_selection_dialog_get_font_selection(dialog);
+}
 #else //GTK_CHECK_VERSION(2,22,0)
 static GtkWidget* _gtk_accessible_get_widget(GtkAccessible *accessible) {
 	return NULL;
@@ -734,6 +737,9 @@ static GdkWindow* _gtk_viewport_get_view_window(GtkViewport *viewport) {
 	return NULL;
 }
 static GtkWindow* _gtk_button_get_event_window(GtkButton *button) {
+	return NULL;
+}
+static GtkFontSelection* _gtk_font_selection_dialog_get_font_selection(GtkFontSelectionDialog *dialog) {
 	return NULL;
 }
 #endif //GTK_CHECK_VERSION(2,22,0)
