@@ -2899,7 +2899,8 @@ func (v *Button) GetImagePosition() PositionType {
 }
 
 func (v *Button) GetEventWindow() *gdk.Window {
-	return gdk.WindowFromUnsafe(unsafe.Pointer(C.gtk_button_get_event_window(BUTTON(v))))
+	panic_if_version_older_auto(2, 22, 0)
+	return gdk.WindowFromUnsafe(unsafe.Pointer(C._gtk_button_get_event_window(BUTTON(v))))
 }
 
 //-----------------------------------------------------------------------
