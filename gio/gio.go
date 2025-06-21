@@ -4,6 +4,8 @@ package gio
 // #cgo pkg-config: gio-2.0
 import "C"
 import (
+	"log"
+	"runtime"
 	"unsafe"
 
 	"github.com/mattn/go-gtk/glib"
@@ -13,6 +15,19 @@ func cfree(s *C.char)            { C.freeCstr(s) }
 func gstring(s *C.char) *C.gchar { return C.toGstr(s) }
 func cstring(s *C.gchar) *C.char { return C.toCstr(s) }
 func gostring(s *C.gchar) string { return C.GoString(cstring(s)) }
+
+func panic_if_version_older_auto(major, minor, micro int) {
+	if C._check_version(C.int(major), C.int(minor), C.int(micro)) != 0 {
+		return
+	}
+	formatStr := "%s is not provided on your Glib, version %d.%d is required\n"
+	if pc, _, _, ok := runtime.Caller(1); ok {
+		log.Panicf(formatStr, runtime.FuncForPC(pc).Name(), major, minor)
+	} else {
+		log.Panicf("Glib version %d.%d is required (unknown caller, see stack)\n",
+			major, minor)
+	}
+}
 
 //-----------------------------------------------------------------------
 // GFile
@@ -104,10 +119,11 @@ type GInputStream struct {
 }
 
 func NewMemoryInputStreamFromBytes(buffer []byte) *GInputStream {
+	panic_if_version_older_auto(2, 34, 0)
 	pbyt := &buffer[0]
-	gbytes := C.g_bytes_new_take(C.gpointer(unsafe.Pointer(pbyt)), C.gsize(len(buffer)))
+	gbytes := C._g_bytes_new_take(C.gpointer(unsafe.Pointer(pbyt)), C.gsize(len(buffer)))
 
-	stream := C.g_memory_input_stream_new_from_bytes(gbytes)
+	stream := C._g_memory_input_stream_new_from_bytes(gbytes)
 	return &GInputStream{stream}
 }
 
