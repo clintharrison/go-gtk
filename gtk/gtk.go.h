@@ -721,7 +721,7 @@ static void _gtk_accessible_set_widget(GtkAccessible *accessible, GtkWidget *wid
 static GdkWindow* _gtk_viewport_get_view_window(GtkViewport *viewport) {
 	return gtk_viewport_get_view_window(viewport);
 }
-static GtkWindow* _gtk_button_get_event_window(GtkButton *button) {
+static GdkWindow* _gtk_button_get_event_window(GtkButton *button) {
 	return gtk_button_get_event_window(button);
 }
 static GtkWidget* _gtk_font_selection_dialog_get_font_selection(GtkFontSelectionDialog *dialog) {
@@ -736,7 +736,7 @@ static void _gtk_accessible_set_widget(GtkAccessible *accessible, GtkWidget *wid
 static GdkWindow* _gtk_viewport_get_view_window(GtkViewport *viewport) {
 	return NULL;
 }
-static GtkWindow* _gtk_button_get_event_window(GtkButton *button) {
+static GdkWindow* _gtk_button_get_event_window(GtkButton *button) {
 	return NULL;
 }
 static GtkWidget* _gtk_font_selection_dialog_get_font_selection(GtkFontSelectionDialog *dialog) {
