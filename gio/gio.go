@@ -94,7 +94,8 @@ type GFileInfo struct {
 
 // GetSymbolicIcon is g_file_info_get_symbolic_icon
 func (fi *GFileInfo) GetSymbolicIcon() *GIcon {
-	return &GIcon{C.g_file_info_get_symbolic_icon(fi.GFileInfo)}
+	panic_if_version_older_auto(2, 34, 0)
+	return &GIcon{C._g_file_info_get_symbolic_icon(fi.GFileInfo)}
 }
 
 // GetIcon is g_file_info_get_icon

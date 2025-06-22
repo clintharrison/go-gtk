@@ -30,8 +30,14 @@ GBytes* _g_bytes_new_take(gpointer data, gsize size) {
 GInputStream* _g_memory_input_stream_new_from_bytes(GBytes* bytes) {
   return g_memory_input_stream_new_from_bytes(bytes);
 }
+GIcon* _g_file_info_get_symbolic_icon(GFileInfo* info) {
+  return g_file_info_get_symbolic_icon(info);
+}
 #else //GLIB_CHECK_VERSION(2, 34, 0)
 GInputStream* _g_memory_input_stream_new_from_bytes(GBytes* bytes) {
+  return NULL;
+}
+GIcon* _g_file_info_get_symbolic_icon(GFileInfo* info) {
   return NULL;
 }
 #endif //GLIB_CHECK_VERSION(2, 34, 0)
