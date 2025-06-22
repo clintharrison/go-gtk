@@ -31,7 +31,6 @@ GInputStream* _g_memory_input_stream_new_from_bytes(GBytes* bytes) {
   return g_memory_input_stream_new_from_bytes(bytes);
 }
 #else //GLIB_CHECK_VERSION(2, 34, 0)
-typedef GObject GInputStream;
 GInputStream* _g_memory_input_stream_new_from_bytes(GBytes* bytes) {
   return NULL;
 }
